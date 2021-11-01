@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+			integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="style.css" />
+
+		<title>Dashboard</title>
+
+		<script>
+			let currentRoute = 0;
+			function toggleSideBar() {
+				const side = document.getElementById("sidebar");
+				if (side.classList.contains("shrink")) {
+					side.classList.remove("shrink");
+				} else {
+					side.classList.add("shrink");
+				}
+			}
+			function navigateDashboard(activeRoute, activeContent) {
+				const items = [
+					"dashboard",
+					"notifications",
+					"calendar",
+					"settings",
+					"statistics",
+				];
+				const contents = [
+					"content-dashboard",
+					"content-notifications",
+					"content-calendar",
+				];
+				items.forEach((element) => {
+					const active = document.getElementById(element);
+					if (active.classList.contains("active")) {
+						active.classList.remove("active");
+					}
+				});
+				const active = document.getElementById(items[activeRoute]);
+				active.classList.add("active");
+				contents.forEach((element) => {
+					const el = document.getElementById(element);
+					el.classList.remove("active");
+				});
+
+				const content = document.getElementById(activeContent);
+				content.classList.add("active");
+			}
+		</script>
+	</head>
+	<body>
+		<aside id="sidebar" class="sidebar">
+			<div style="display: flex; flex-direction: column; gap: 24px">
+				<div class="logo">Fyneen</div>
+				<div class="logo-letter">F</div>
+				<div class="actions">
+					<button type="button" class="btn active">Personal</button>
+					<button type="button" class="btn">Business</button>
+				</div>
+				<div class="items">
+					<div
+						onclick="navigateDashboard(0,'content-dashboard')"
+						id="dashboard"
+						class="item active"
+					>
+						<i class="fas fa-home"></i>
+						<div>Dashboard</div>
+					</div>
+					<div
+						onclick="navigateDashboard(1,'content-notifications')"
+						id="notifications"
+						class="item"
+					>
+						<i class="fas fa-bell"></i>
+						<div>Notifications</div>
+					</div>
+					<div
+						onclick="navigateDashboard(2,'content-calendar')"
+						id="calendar"
+						class="item"
+					>
+						<i class="fas fa-calendar"></i>
+						<div>Calendar</div>
+					</div>
+					<div onclick="navigateDashboard(3)" id="settings" class="item">
+						<i class="fas fa-cog"></i>
+						<div>Settings</div>
+					</div>
+					<div onclick="navigateDashboard(4)" id="statistics" class="item">
+						<i class="fas fa-chart-bar"></i>
+						<div>Statistics</div>
+					</div>
+				</div>
+				<!-- <button type="button" class="toggle toggle-dark">
+					<i class="fas fa-moon"></i>
+					<div>Dark</div>
+				</button> -->
+				<button
+					onclick="toggleSideBar()"
+					type="button"
+					class="toggle toggle-light"
+				>
+					<i class="fas fa-sun"></i>
+					<div>Light</div>
+				</button>
+			</div>
+			<div class="profile">
+				<img
+					src="https://images.unsplash.com/photo-1599420186946-7b6fb4e297f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYyNTUyNTkxNA&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080"
+					alt=""
+				/>
+				<div>
+					<div class="name">Amanda Rachel</div>
+					<div class="email">amandaer@mail.com</div>
+				</div>
+				<i class="fas fa-ellipsis-h"></i>
+			</div>
+		</aside>
+		<section id="content-dashboard" class="content active">dashboard</section>
+		<section id="content-notifications" class="content">notifications</section>
+		<section id="content-calendar" class="content">calendar</section>
+	</body>
+</html>
